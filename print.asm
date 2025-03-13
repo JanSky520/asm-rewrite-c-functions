@@ -40,7 +40,7 @@ section .text
             cmp byte [r14], 'c'
             je printf_char
             cmp byte [r14], 's'
-            je print_str
+            je printf_str
             jmp printf
 
         printf_int:
@@ -76,8 +76,11 @@ section .text
             jmp printf
 
         printf_char:
-            mov [buffer], r13
-            mov rsi, buffer
+            xor rax, rax
+            xor rdx, rdx
+            mov rax, r13
+            mov dl, al
+            mov rsi, rax
             mov rax, 1
             mov rdi, 1
             mov rdx, 1
@@ -85,7 +88,7 @@ section .text
             add r12, 2
             jmp printf
 
-        print_str:
+        printf_str:
             push rdi
             mov rdi, r13
             call print

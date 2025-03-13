@@ -8,4 +8,9 @@
 + 并没有参考源码，自己也没有看过源码，都是自己手搓，代码粗糙，但思想清晰易懂，方便阅读学习，有好的优化方法欢迎留言。
 + 目前 %c 的转换中存在问题，只能转换字符变量，无法转换字符常量，暂时没有解决办法    
 
+在命令行中运行这个测试代码即可测试函数
+```bash
+nasm -f elf64 -g -F dwarf test.asm -l main.lst && nasm -f elf64 -g -F dwarf print.asm -l myfun.lst && gcc test.o print.o -o main -no-pie && ./main
+```
+
 Using NASM's 64-bit assembly syntax, some C language functions, such as printf and scanf, have been rewritten. Currently, it can accurately convert %d and %c in strings into their corresponding integers and characters. Updates for %f, %s, and others will follow. The next phase will focus on rewriting scanf.

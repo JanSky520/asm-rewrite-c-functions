@@ -39,6 +39,8 @@ section .text
             je printf_int
             cmp byte [r14], 'c'
             je printf_char
+            cmp byte [r14], 's'
+            je print_str
             jmp printf
 
         printf_int:
@@ -80,6 +82,14 @@ section .text
             mov rdi, 1
             mov rdx, 1
             syscall
+            add r12, 2
+            jmp printf
+
+        print_str:
+            push rdi
+            mov rdi, r13
+            call print
+            pop rdi
             add r12, 2
             jmp printf
 
